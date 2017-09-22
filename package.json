@@ -1,11 +1,12 @@
 {
   "name": "sales-mail-builder",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:gh": "ng build --prod --no-aot --output-path ./docs",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
