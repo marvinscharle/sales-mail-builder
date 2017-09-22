@@ -1,0 +1,30 @@
+<div class="card mb-2">
+  <div class="card-body p-2">
+    <p *ngIf="!(editMode$ | async); else editMode" class="card-text"
+       [innerHTML]="((body$ | async) || 'No Content') | linebreak | replaceFragments: fragments.placeholders"></p>
+    <ng-template #editMode>
+      <div class="form">
+        <div class="form-group">
+          <label for="body" class="sr-only">Building Block</label>
+          <textarea class="form-control" id="body" [(ngModel)]="text"></textarea>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template [ngIf]="!(editMode$ | async)">
+      <a href="#" class="card-link" (click)="$event.preventDefault(); triggerInsert()">
+        <strong>Insert</strong>
+      </a>
+      <a href="#" class="card-link" (click)="$event.preventDefault(); toggleEdit()">
+        Edit
+      </a>
+      <a href="#" class="card-link" (click)="$event.preventDefault(); remove.next()">
+        Remove
+      </a>
+    </ng-template>
+    <ng-template [ngIf]="editMode$ | async">
+      <a href="#" class="card-link" (click)="$event.preventDefault(); toggleEdit()">
+        Done
+      </a>
+    </ng-template>
+  </div>
+</div>
